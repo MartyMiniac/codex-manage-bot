@@ -16,7 +16,7 @@ app.post(`/${TOKEN}`, (req, res) => {
     message=req.body
     res.sendStatus(200)
     console.log(message.message)
-    helper.sendMessage(message.message.chat.id, message.text)
+    helper.sendMessage(message.message.chat.id, message.message.text)
 })
 
 app.get('/', (req, res) => {
