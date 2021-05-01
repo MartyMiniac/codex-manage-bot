@@ -50,7 +50,7 @@ const login = (id, arr) => {
             console.log('login done')
             student.info()
             .then(info => {
-                let name = info.name
+                let name = info.detail[0].name
                 let yr = 4-(parseInt(info.detail[0].enrollmentno.substring(0,2))-17)
 
                 if(yr==1) {
