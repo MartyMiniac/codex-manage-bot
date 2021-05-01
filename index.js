@@ -1,5 +1,3 @@
-const iterapi = require('node-iterapi')
-const axios = require('axios')
 const express = require('express')
 const helper = require('./helper')
 require('dotenv').config()

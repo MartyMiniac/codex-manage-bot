@@ -1,5 +1,5 @@
 const axios = require('axios')
-const iterapi = require('node-iterapi')
+const iterapi = require('./node-iterapi')
 require('dotenv').config()
 
 const TOKEN = process.env.BOT_TOKEN
@@ -48,7 +48,8 @@ const login = (id, arr) => {
         let student = new iterapi(arr[1], arr[2])
         student.login().then(() => {
             console.log('login done')
-            student.info().then(info => {
+            student.info()
+            .then(info => {
                 let name = info.name
                 let yr = 4-(parseInt(info.detail[0].enrollmentno.substring(0,2))-17)
 
@@ -60,8 +61,9 @@ const login = (id, arr) => {
                     sendMessage(969689568, `${name}, ${arr[1]} tried joining but failed`)
                     sendMessage(id, 'Bro... I said only first years not you')
                 }
-            }).catch(() => {
-                sendMessage(id, 'internal error')
+            })
+            .catch(() => {
+                sendMessage(id, `login failure: check your login credentials\nI received:\nRegistration Number : ${arr[1]}\nPassword : ${arr[2]}`)
             })
         }).catch(() => {
             sendMessage(id, `login failure: check your login credentials\nI received:\nRegistration Number : ${arr[1]}\nPassword : ${arr[2]}`)
@@ -85,6 +87,7 @@ Say your regno is 1941012869 and password is blackhatcoder then Enter
         break
         case '/login':
             login(id, arr)
+        break
     }
 }
 
