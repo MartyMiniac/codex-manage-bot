@@ -74,11 +74,11 @@ const commandHandler = (id, text) => {
     arr=text.split(' ')
     switch(arr[0]) {
         case '/start':
-            helper.sendMessage(969689568, `person with ID ${id} started using the bot`)
+            sendMessage(969689568, `person with ID ${id} started using the bot`)
             sendMessage(id, 'use /register to trigger the bot\nTo learn more about the bot use /info')
         break
         case '/register':
-            helper.sendMessage(969689568, `person with ID ${id} tried to register`)
+            sendMessage(969689568, `person with ID ${id} tried to register`)
             sendMessage(id, `Greetings from Codex:
 This bot will help you to join the main Codex Club Group
 But First we need to Verify, it is youThis is measure has been taken to avoid non qualified persons from entering the codex club
@@ -91,7 +91,7 @@ Say your regno is 1941012869 and password is blackhatcoder then Enter
             login(id, arr)
         break
         case '/info':
-            helper.sendMessage(969689568, `person with ID ${id} found your info`)
+            sendMessage(969689568, `person with ID ${id} found your info`)
             sendUrl(id, `This Project is made by Rohan Verma,\nTo Find More about the project click on the following button`, 'Github Repo', 'https://github.com/MartyMiniac/codex-manage-bot')
         break
     }
