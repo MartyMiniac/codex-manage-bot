@@ -20,8 +20,13 @@ app.post(`/${TOKEN}`, (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    helper.sendMessage(969689568, 'some one accessed the endpoint')
+    helper.sendMessage(969689568, 'someone accessed the endpoint')
     res.send('hello this is working')
+})
+
+app.get('/join', (req, res) => {
+    helper.sendMessage(969689568, 'someone tried to join')
+    res.send('<h1>Not just yet bro... 😉</h1>')
 })
 
 app.listen(PORT, () => {

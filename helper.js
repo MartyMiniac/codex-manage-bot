@@ -1,8 +1,10 @@
 const axios = require('axios')
+const iterapi = require('node-iterapi')
 require('dotenv').config()
 
 const TOKEN = process.env.BOT_TOKEN
 const DOMAIN = `https://api.telegram.org/bot${TOKEN}/`
+const JOIN_URL = process.env.JOIN_URL
 
 const sendMessage = (id, msg) => {
     console.log('id', id, 'message', msg)
@@ -43,7 +45,22 @@ const login = (id, arr) => {
     }
     else {
         console.log(arr[1], arr[2])
-        sendUrl(id, 'Codex Welcomes You', 'Join Codex', 'https://www.google.com')
+        let student = new iterapi(arr[1], arr[2])
+        student.login().then(() => {
+            student.info().then(info => {
+                let name = info.name
+                let yr = 4-(parseInt(res.detail[0].enrollmentno.substring(0,2))-17)
+
+                if(yr==1) {
+                    sendUrl(id, `Hi ${name},\nCodex Welcomes You`, 'Join Codex', JOIN_URL)
+                }
+                else {
+                    sendMessage(id, 'Bro... I said only first years not you')
+                }
+            })
+        }).catch(() => {
+            sendMessage(id, `login failure: check your login credentials\nI received:\nRegistration Number : ${arr[1]}\nPassword : ${arr[2]}`)
+        })
     }
 }
 const commandHandler = (id, text) => {
@@ -60,8 +77,8 @@ you need to verify yourself by entering the login credentials used to login into
 Enter /login <registration number> <password> to verify yourself
 Say your regno is 1941012869 and password is blackhatcoder then Enter
 /login 1941012869 blackhatcoder`)
+        break
         case '/login':
-            sendMessage(id, 'please while we verify your credentials')
             login(id, arr)
     }
 }
