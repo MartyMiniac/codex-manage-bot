@@ -10,6 +10,10 @@ const sendMessage = (id, msg) => {
         chat_id: id,
         text: msg
     })
+    .catch(err => {
+        console.log('id', id, 'message', msg)
+        console.log('error in sending message')
+    })
 }
 
 module.exports = {
