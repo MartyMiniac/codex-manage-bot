@@ -14,7 +14,7 @@ const DOMAIN = `https://api.telegram.org/bot${TOKEN}/`
 
 app.post(`/${TOKEN}`, (req, res) => {
     message=req.body
-    helper.sendMessage(message.chat.id, message.text)
+    helper.sendMessage(message.message.chat.id, message.text)
 })
 
 app.get('/', (req, res) => {
