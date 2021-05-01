@@ -37,8 +37,14 @@ const sendUrl = (id, msg, btnText, url) => {
         console.log('error in sending message')
     })
 }
-const login = (arr) => {
-    sendUrl(id, 'Codex Welcomes You', 'Join Codex', 'https://www.google.com')
+const login = (id, arr) => {
+    if(arr.length<3) {
+        sendMessage(id, 'login failure: incomplete details provided')
+    }
+    else {
+        console.log(arr[1], arr[2])
+        sendUrl(id, 'Codex Welcomes You', 'Join Codex', 'https://www.google.com')
+    }
 }
 const commandHandler = (id, text) => {
     arr=text.split(' ')
@@ -48,12 +54,12 @@ const commandHandler = (id, text) => {
         break
         case '/register':
             sendMessage(id, `Greetings from Codex:
-            This bot will help you to join the main Codex Club Group
-            But First we need to Verify, it is youThis is measure has been taken to avoid non qualified persons from entering the codex club
-            you need to verify yourself by entering the login credentials used to login into student portal
-            Enter /login <registration number> <password> to verify yourself
-            Say your regno is 1941012869 and password is blackhatcoder then Enter
-            /login 1941012869 blackhatcoder`)
+This bot will help you to join the main Codex Club Group
+But First we need to Verify, it is youThis is measure has been taken to avoid non qualified persons from entering the codex club
+you need to verify yourself by entering the login credentials used to login into student portal
+Enter /login <registration number> <password> to verify yourself
+Say your regno is 1941012869 and password is blackhatcoder then Enter
+/login 1941012869 blackhatcoder`)
         case '/login':
             sendMessage(id, 'please while we verify your credentials')
             login(id, arr)
