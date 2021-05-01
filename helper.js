@@ -47,7 +47,6 @@ const login = (id, arr) => {
         console.log(arr[1], arr[2])
         let student = new iterapi(arr[1], arr[2])
         student.login().then(() => {
-            try {
                 student.info().then(info => {
                     let name = info.name
                     let yr = 4-(parseInt(res.detail[0].enrollmentno.substring(0,2))-17)
@@ -59,11 +58,9 @@ const login = (id, arr) => {
                     else {
                         sendMessage(id, 'Bro... I said only first years not you')
                     }
-                })
-            }
-            catch {
+                }).catch(() => {
                 sendMessage(id, 'internal error')
-            }
+            })
         }).catch(() => {
             sendMessage(id, `login failure: check your login credentials\nI received:\nRegistration Number : ${arr[1]}\nPassword : ${arr[2]}`)
         })
