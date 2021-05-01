@@ -15,6 +15,10 @@ app.post(`/${TOKEN}`, (req, res) => {
     console.log(req.body)
 })
 
+app.get('/', (req, res) => {
+    res.send(TOKEN)
+})
+
 app.listen(PORT, () => {
     console.log(`Server listening at PORT ${PORT}`)
 })
