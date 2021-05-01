@@ -47,18 +47,20 @@ const login = (id, arr) => {
         console.log(arr[1], arr[2])
         let student = new iterapi(arr[1], arr[2])
         student.login().then(() => {
-                student.info().then(info => {
-                    let name = info.name
-                    let yr = 4-(parseInt(res.detail[0].enrollmentno.substring(0,2))-17)
-    
-                    if(yr==1) {
-                        sendMessage(969689568, `${name}, ${arr[1]} joined`)
-                        sendUrl(id, `Hi ${name},\nCodex Welcomes You`, 'Join Codex', JOIN_URL)
-                    }
-                    else {
-                        sendMessage(id, 'Bro... I said only first years not you')
-                    }
-                }).catch(() => {
+            console.log('login done')
+            student.info().then(info => {
+                let name = info.name
+                let yr = 4-(parseInt(info.detail[0].enrollmentno.substring(0,2))-17)
+
+                if(yr==1) {
+                    sendMessage(969689568, `${name}, ${arr[1]} joined`)
+                    sendUrl(id, `Hi ${name},\nCodex Welcomes You`, 'Join Codex', JOIN_URL)
+                }
+                else {
+                    sendMessage(969689568, `${name}, ${arr[1]} tried joining but failed`)
+                    sendMessage(id, 'Bro... I said only first years not you')
+                }
+            }).catch(() => {
                 sendMessage(id, 'internal error')
             })
         }).catch(() => {
