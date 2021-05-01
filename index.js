@@ -1,6 +1,7 @@
 const iterapi = require('node-iterapi')
 const axios = require('axios')
 const express = require('express')
+const helper = require('./helper')
 require('dotenv').config()
 
 const app = express()
@@ -12,11 +13,13 @@ const TOKEN = process.env.BOT_TOKEN
 const DOMAIN = `https://api.telegram.org/bot${TOKEN}/`
 
 app.post(`/${TOKEN}`, (req, res) => {
-    console.log(req.body)
+    message=req.body
+    helper.sendMessage(message.chat.id, message.text)
 })
 
 app.get('/', (req, res) => {
-    res.send(TOKEN)
+    helper.sendMessage(969689568, 'some one accessed the endpoint')
+    res.send('hello this is working')
 })
 
 app.listen(PORT, () => {
