@@ -1,5 +1,6 @@
 const axios = require('axios')
 const iterapi = require('./node-iterapi')
+const invites = require('./invites')
 require('dotenv').config()
 
 const TOKEN = process.env.BOT_TOKEN
@@ -52,8 +53,9 @@ const login = (id, arr) => {
             .then(info => {
                 let name = info.detail[0].name
                 let yr = 4-(parseInt(info.detail[0].enrollmentno.substring(0,2))-17)
+                let reg = info.detail[0].enrollmentno
 
-                if(yr==1) {
+                if(invites.includes(reg)) {
                     sendMessage(969689568, `${name}, ${arr[1]} joined`)
                     sendUrl(id, `Hi ${name},\nCodex Welcomes You`, 'Join Codex', JOIN_URL)
                 }
