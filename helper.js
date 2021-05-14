@@ -61,7 +61,7 @@ const login = (id, arr) => {
                 }
                 else {
                     sendMessage(969689568, `${name}, ${arr[1]} tried joining but failed`)
-                    sendMessage(id, 'Bro... I said only first years not you')
+                    sendMessage(id, 'Only selected students are welcomed to Codex\nIf you think you were selected but you are unable to join then message in the group tagging @martyminiac')
                 }
             })
             .catch(() => {
